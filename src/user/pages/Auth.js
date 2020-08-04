@@ -109,8 +109,8 @@ const Auth = () => {
             isValid: false,
           },
           userType: {
-            value: '',
-            isValid: false,
+            value: 'customer',
+            isValid: true,
           },
         },
         false
@@ -124,7 +124,7 @@ const Auth = () => {
       <ErrorModal error={error} onClear={clearError} />
       <Card className='authentication'>
         {isLoading && <LoadingSpinner asOverlay />}
-        <h2>Login Required</h2>
+        <h2 className='login-title'>Login Required</h2>
         <hr />
         <form onSubmit={authSubmitHandler}>
           {!isLoginMode && (
@@ -133,7 +133,7 @@ const Auth = () => {
               id='name'
               type='text'
               label='Name'
-              validators={[VALIDATOR_REQUIRE]}
+              validators={[VALIDATOR_REQUIRE()]}
               errorText='Please enter a name'
               onInput={inputHandler}
             />
@@ -168,12 +168,20 @@ const Auth = () => {
             />
           )}
           {!isLoginMode && (
-            <span>
-              <b>User Type</b>
-            </span>
+            <Input
+              element='select'
+              id='userType'
+              name='userType'
+              label='User Type'
+              validators={[VALIDATOR_USERTYPE()]}
+              errorText='Please select either "customer" or "washer".'
+              onInput={inputHandler}
+              options={['customer', 'washer']}
+              initialValue='customer'
+              initialValid={true}
+            />
           )}
-          <br />
-          {!isLoginMode && (
+          {/* {!isLoginMode && (
             <Input
               element='input'
               id='userType'
@@ -196,7 +204,7 @@ const Auth = () => {
               errorText='Please enter either "customer" or "washer".'
               onInput={inputHandler}
             />
-          )}
+          )} */}
           <br />
           {/* {!isLoginMode && (
             <Input

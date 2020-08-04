@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 import Card from '../../shared/components/UIElements/Card';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
@@ -9,15 +9,21 @@ import { AuthContext } from '../../shared/context/auth-context';
 import './CarItem.css';
 
 const CarItem = (props) => {
+  console.log(props.image);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [
     showWashRequestSuccessModal,
     setShowWashRequestSuccessModal,
   ] = useState(false);
+  console.log('Here2');
+  console.log(props.washPlans);
+
   const auth = useContext(AuthContext);
 
-  const showConfirmHandler = () => {
+  const showConfirmHandler = async () => {
+    console.log('Here');
+    console.log(props.washPlans);
     setShowConfirmModal(true);
   };
 
@@ -31,17 +37,31 @@ const CarItem = (props) => {
 
   const proceedConfirmHandler = async () => {
     setShowConfirmModal(false);
+    console.log(
+      JSON.stringify({
+        washPlan: props.washPlans.filter(
+          (plan) => plan.price === props.price
+        )[0].id,
+      })
+    );
     try {
-      await sendRequest(
-        `${process.env.REACT_APP_WASHNOW_SERVICE}/sendWashRequest/${props.id}`,
-        'GET',
-        null,
+      const resp = await sendRequest(
+        `${process.env.REACT_APP_WASHNOW_SERVICE}/sendWashRequest/${
+          props.id
+        }?washplan=${
+          props.washPlans.filter((plan) => plan.price === props.price)[0].name
+        }&price=${props.price}`,
+        undefined,
+        undefined,
         {
           Authorization: 'Bearer ' + auth.token,
         }
       );
+      console.log(resp);
       setShowWashRequestSuccessModal(true);
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -61,12 +81,30 @@ const CarItem = (props) => {
           </React.Fragment>
         }
       >
+        <label htmlFor=''>
+          Pick your car wash plan:
+          <select
+            name='washplan'
+            value={props.washPlan}
+            onChange={props.changed}
+          >
+            {props.washPlans.map((plan) => (
+              <option value={plan.id} key={plan.id}>
+                {plan.name} - ₹{plan.price}
+              </option>
+            ))}
+          </select>
+        </label>
         <p>
           Do you want to proceed and book car wash for your car{' '}
           <b>{props.model}</b>?
           <br />
-          <i>Note: Clicking Proceed will send wash now request.</i>
+          <i>
+            Note: Clicking Proceed will send wash now request and payment will
+            be assumed to completed.
+          </i>
         </p>
+        <h2 className='price'>Price: ₹{props.price}</h2>
       </Modal>
       <Modal
         show={showWashRequestSuccessModal}

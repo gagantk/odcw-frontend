@@ -33,8 +33,8 @@
 }
 
 .button--danger {
-  background: #000099;
-  border-color: #000099;
+  background: #830000;
+  border-color: #830000;
 }
 
 .button--danger:hover,
@@ -58,4 +58,9 @@
 
 .button--big {
   font-size: 1.5rem;
+}
+
+.button--useritem {
+  margin-right: 0;
+  padding: 0.5rem 1rem;
 }

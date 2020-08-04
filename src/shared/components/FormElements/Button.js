@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import './Button.css';
 
 const Button = (props) => {
+  console.log(props.useritem);
   if (props.href) {
     return (
       <a
         className={`button button--${props.size || 'default'} ${
           props.inverse && 'button--inverse'
-        } ${props.danger && 'button--danger'}`}
+        } ${props.danger && 'button--danger'}}`}
         href={props.href}
       >
         {props.children}
@@ -23,7 +24,11 @@ const Button = (props) => {
         exact={props.exact}
         className={`button button--${props.size || 'default'} ${
           props.inverse && 'button--inverse'
-        } ${props.danger && 'button--danger'}`}
+        } ${props.danger && 'button--danger'} ${
+          props.useritem && 'button--useritem'
+        } ${props.washplan && 'button--washplan'} ${
+          props.washplans && 'button--washplans'
+        }`}
       >
         {props.children}
       </Link>
@@ -33,7 +38,9 @@ const Button = (props) => {
     <button
       className={`button button--${props.size || 'default'} ${
         props.inverse && 'button--inverse'
-      } ${props.danger && 'button--danger'}`}
+      } ${props.danger && 'button--danger'} ${
+        props.useritem && 'button--useritem'
+      } ${props.washplan && 'button--washplan'}`}
       type={props.type}
       onClick={props.onClick}
       disabled={props.disabled}

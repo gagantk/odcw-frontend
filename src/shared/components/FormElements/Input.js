@@ -77,6 +77,20 @@ const Input = (props) => {
         />
       );
     }
+  } else if (props.element === 'select') {
+    element = (
+      <select
+        name={props.name}
+        value={inputState.value}
+        onChange={changeHandler}
+      >
+        {props.options.map((option) => (
+          <option value={option} key={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    );
   } else {
     element = (
       <textarea

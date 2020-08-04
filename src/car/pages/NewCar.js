@@ -10,6 +10,7 @@ import { useForm } from '../../shared/hooks/form-hook';
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_PAYMENTMODE,
+  VALIDATOR_MINLENGTH,
 } from '../../shared/util/validators';
 import Button from '../../shared/components/FormElements/Button';
 import './NewCar.css';
@@ -31,7 +32,7 @@ const CarDetails = () => {
         value: null,
         isValid: false,
       },
-      preferredpayment: {
+      address: {
         value: '',
         isValid: false,
       },
@@ -49,10 +50,7 @@ const CarDetails = () => {
       formData.append('regno', formState.inputs.regno.value);
       formData.append('model', formState.inputs.model.value);
       formData.append('image', formState.inputs.image.value);
-      formData.append(
-        'preferredpayment',
-        formState.inputs.preferredpayment.value
-      );
+      formData.append('address', formState.inputs.address.value);
       console.log(formData);
       await sendRequest(
         `${process.env.REACT_APP_CAR_DETAILS_SERVICE}/new`,
@@ -69,7 +67,7 @@ const CarDetails = () => {
   return (
     <form className='cardetails-form' onSubmit={carSubmitHandler}>
       {isLoading && <LoadingSpinner asOverlay />}
-      <h2>Add Car Details</h2>
+      <h2 className='newcar-title'>Add Car Details</h2>
       <hr />
       <Input
         id='regno'
@@ -94,11 +92,20 @@ const CarDetails = () => {
         onInput={inputHandler}
         errorText='Please add an image.'
       />
-      <span>
+      <Input
+        id='address'
+        element='input'
+        type='text'
+        label='Address'
+        validators={[VALIDATOR_MINLENGTH(5)]}
+        errorText='Please enter an address.'
+        onInput={inputHandler}
+      />
+      {/* <span>
         <b>Preferred Payment</b>
       </span>
-      <br />
-      <Input
+      <br /> */}
+      {/* <Input
         element='input'
         type='radio'
         id='preferredpayment'
@@ -117,7 +124,7 @@ const CarDetails = () => {
         onInput={inputHandler}
         validators={[VALIDATOR_PAYMENTMODE()]}
         errorText='Please enter either "Pay Online" or "Pay On Delivery".'
-      />
+      /> */}
       {/* <Input
         id='preferredpayment'
         element='input'

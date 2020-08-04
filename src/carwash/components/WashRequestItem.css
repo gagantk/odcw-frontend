@@ -1,0 +1,65 @@
+.washrequest-item {
+  margin: 1rem 0;
+}
+
+.washrequest-item__content {
+  padding: 0;
+  display: flex;
+}
+
+.washrequest-item__info {
+  padding: 1rem;
+  text-align: left;
+  flex: 33.33%;
+}
+
+.washrequest-item__footer {
+  padding: 0.5rem;
+}
+
+.washrequest-item__image {
+  width: 17.5rem;
+  height: 10.5rem;
+  margin-right: 1.5rem;
+  float: right;
+  flex: 23.33%;
+  padding: 0.5rem;
+}
+
+.washrequest-item__image img {
+  width: 16rem;
+  height: 9rem;
+  object-fit: cover;
+  float: right;
+  flex: 33.33%;
+}
+
+.washrequest-item__info h2,
+.washrequest-item__info h3,
+.washrequest-item__info p {
+  margin: 0 0 0.5rem 0;
+}
+
+.washrequest-item__actions {
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid #ccc;
+}
+
+.washrequest-item__modal-content {
+  padding: 0;
+}
+
+.washrequest-item__modal-actions {
+  text-align: right;
+}
+
+.washrequest-item__actions button,
+.washrequest-item__actions a {
+  margin: 0.5rem;
+}
+
+.map-container {
+  height: 15rem;
+  width: 100%;
+}

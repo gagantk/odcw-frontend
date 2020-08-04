@@ -7,15 +7,39 @@ import CarList from '../components/CarList';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import { useEffect } from 'react';
 import { AuthContext } from '../../shared/context/auth-context';
+import './BookCarWash.css';
 
 const BookCarWash = () => {
   const [loadedCars, setLoadedCars] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const userId = useParams().userId;
   const auth = useContext(AuthContext);
+  const [washPlan, setWashPlan] = useState();
+  // const [washPlans, setWashPlans] = useState([]);
+  const [price, setPrice] = useState(0);
+  let washPlans;
 
   useEffect(() => {
-    const fetchCars = async () => {
+    const washPlansHandler = async () => {
+      try {
+        console.log('Hi');
+        const washPlansData = await sendRequest(
+          process.env.REACT_APP_WASHPLAN_SERVICE,
+          undefined,
+          undefined,
+          { Authorization: `Bearer ${auth.token}` }
+        );
+        washPlans = washPlansData.washPlans;
+        setWashPlan(washPlansData.washPlans[0].id);
+        setPrice(washPlansData.washPlans[0].price);
+        console.log(price);
+        console.log(washPlansData);
+        console.log(washPlans);
+        console.log(washPlan);
+      } catch (err) {
+        console.log(err);
+      }
+
       try {
         const responseData = await sendRequest(
           `${process.env.REACT_APP_CAR_DETAILS_SERVICE}/user/${userId}`,
@@ -24,10 +48,15 @@ const BookCarWash = () => {
           { Authorization: 'Bearer ' + auth.token }
         );
         console.log(responseData);
-        setLoadedCars(responseData.cars);
-      } catch (err) {}
+        setLoadedCars({
+          cars: responseData.cars,
+          washPlans: washPlans,
+        });
+      } catch (err) {
+        console.log(err);
+      }
     };
-    fetchCars();
+    washPlansHandler();
   }, [sendRequest, userId]);
 
   return (
@@ -35,11 +64,11 @@ const BookCarWash = () => {
       <ErrorModal error={error} onClear={clearError} />
       {isLoading && (
         <div className='center'>
-          <LoadingSpinner />
+          <LoadingSpinner asOverlay />
         </div>
       )}
       {!isLoading && loadedCars && (
-        <h1 className='center'>Select a car to book car wash</h1>
+        <h1 className='carwash-title'>Select a car to book car wash</h1>
       )}
       {!isLoading && loadedCars && <CarList items={loadedCars} />}
     </React.Fragment>

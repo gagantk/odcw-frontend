@@ -5,6 +5,7 @@
 
 .car-item__content {
   padding: 0;
+  display: flex;
 }
 
 .car-item__info {
@@ -16,12 +17,16 @@
   width: 17.5rem;
   height: 10.5rem;
   margin-right: 1.5rem;
+  float: right;
+  flex: 50%;
+  padding: 0.5rem;
 }
 
 .car-item__image img {
   width: 16rem;
   height: 9rem;
   object-fit: cover;
+  float: right;
 }
 
 .car-item__info h2,
@@ -47,6 +52,10 @@
 .car-item__actions button,
 .car-item__actions a {
   margin: 0.5rem;
+}
+
+.price {
+  color: black;
 }
 
 .map-container {

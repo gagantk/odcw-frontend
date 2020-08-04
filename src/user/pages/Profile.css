@@ -1,0 +1,17 @@
+.profile,
+.profile-title {
+  margin: 1rem auto;
+  padding: 0;
+  width: 90%;
+  max-width: 40rem;
+}
+
+.profile-title {
+  color: white;
+}
+
+.profile__content {
+  margin: 1rem 0;
+  padding: 0 1rem 0 1rem;
+  line-height: normal;
+}

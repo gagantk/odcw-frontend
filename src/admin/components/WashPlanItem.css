@@ -1,0 +1,40 @@
+.washplan-item {
+  margin: 1rem 0;
+}
+
+.washplan-item__content {
+  padding: 1rem 1rem 0 1rem;
+}
+
+.washplan-item__info {
+  padding: 0.5rem;
+}
+
+.washplan-item__info h2,
+.washplan-item__info h3,
+.washplan-item__info p {
+  margin: 0 0 0rem 0;
+}
+
+.washplan-item__modal-content {
+  padding: 0;
+}
+
+.washplan-item__modal-actions {
+  text-align: right;
+}
+
+.washplan-item__actions {
+  padding: 0.5rem;
+  text-align: center;
+  border-top: 1px solid #ccc;
+}
+
+.washplan-item__actions button,
+.washplan-item__actions a {
+  margin: 0.5rem;
+}
+
+.washplan-item__description {
+  text-align: justify;
+}

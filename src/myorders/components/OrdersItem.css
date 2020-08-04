@@ -1,0 +1,67 @@
+.orders-item {
+  margin: 1rem 0;
+}
+
+.orders-item__content {
+  display: flex;
+  padding: 0;
+}
+
+.orders-item__info {
+  padding: 1rem;
+  text-align: left;
+  flex: 33.33%;
+}
+
+.orders-item__status {
+  line-height: 150px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.orders-item__image {
+  width: 11rem;
+  height: 8rem;
+  margin-right: 1.5rem;
+  margin-top: 2.5rem;
+  flex: 23.33%;
+  float: right;
+}
+
+.orders-item__image img {
+  width: 11rem;
+  height: 6rem;
+  object-fit: cover;
+  flex: 33.33%;
+  float: right;
+}
+
+.orders-item__info h2,
+.orders-item__info h3,
+.orders-item__info p {
+  margin: 0 0 0.5rem 0;
+}
+
+.orders-item__actions {
+  padding: 1rem;
+  text-align: center;
+  borders-top: 1px solid #ccc;
+}
+
+.orders-item__modal-content {
+  padding: 0;
+}
+
+.orders-item__modal-actions {
+  text-align: right;
+}
+
+.orders-item__actions button,
+.orders-item__actions a {
+  margin: 0.5rem;
+}
+
+.map-container {
+  height: 15rem;
+  width: 100%;
+}

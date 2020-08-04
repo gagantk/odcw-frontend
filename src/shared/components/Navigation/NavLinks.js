@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { AuthContext } from '../../context/auth-context';
+import { FaUser } from 'react-icons/fa';
 import './NavLinks.css';
 
 const NavLinks = (props) => {
@@ -32,8 +33,43 @@ const NavLinks = (props) => {
       )}
       {auth.isLoggedIn && auth.userType === 'washer' && (
         <li>
-          <NavLink to='#' exact>
+          <NavLink to='/washrequests' exact>
             WASH REQUESTS
+          </NavLink>
+        </li>
+      )}
+      {auth.isLoggedIn && auth.userType !== 'admin' && (
+        <li>
+          <NavLink to='/orders' exact>
+            MY ORDERS
+          </NavLink>
+        </li>
+      )}
+      {auth.isLoggedIn && auth.userType !== 'admin' && (
+        <li>
+          <NavLink to='/profile' exact>
+            <FaUser />
+          </NavLink>
+        </li>
+      )}
+      {auth.isLoggedIn && auth.userType === 'admin' && (
+        <li>
+          <NavLink to='/admin/orders' exact>
+            ORDERS
+          </NavLink>
+        </li>
+      )}
+      {auth.isLoggedIn && auth.userType === 'admin' && (
+        <li>
+          <NavLink to='/admin/washplans' exact>
+            WASH PLANS
+          </NavLink>
+        </li>
+      )}
+      {auth.isLoggedIn && auth.userType === 'admin' && (
+        <li>
+          <NavLink to='/admin/users' exact>
+            USERS
           </NavLink>
         </li>
       )}

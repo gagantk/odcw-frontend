@@ -1,0 +1,21 @@
+.washplans {
+  margin: 0 auto;
+  padding: 0;
+  width: 90%;
+  max-width: 40rem;
+}
+
+.washplans-header {
+  display: block;
+}
+
+.washplans-title {
+  color: white;
+  flex: 50%;
+}
+
+.washplansbutton {
+  float: right;
+  padding: 0;
+  margin: 0;
+}

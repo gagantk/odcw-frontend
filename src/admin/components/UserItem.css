@@ -1,0 +1,35 @@
+.user-item {
+  margin: 1rem 0;
+}
+
+.user-item__content {
+  padding: 0;
+}
+
+.user-item__info {
+  padding: 0.5rem;
+}
+
+.user-item__info h2,
+.user-item__info h3,
+.user-item__info p {
+  margin: 0 0 0.5rem 0;
+}
+
+.user-item__modal-content {
+  padding: 0;
+}
+
+.user-item__modal-actions {
+  text-align: right;
+}
+
+.user-item__actions button,
+.user-item__actions a {
+  margin: 0.5rem;
+}
+
+.map-container {
+  height: 15rem;
+  width: 100%;
+}
