@@ -40,7 +40,6 @@ const NewWashPlan = () => {
   const washPlanSubmitHandler = async (event) => {
     event.preventDefault();
     try {
-      console.log(auth);
       await sendRequest(
         `${process.env.REACT_APP_WASHPLAN_SERVICE}/add`,
         'POST',

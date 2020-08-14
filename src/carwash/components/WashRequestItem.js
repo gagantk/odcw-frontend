@@ -10,7 +10,6 @@ import { AuthContext } from '../../shared/context/auth-context';
 import './WashRequestItem.css';
 
 const WashRequestItem = (props) => {
-  console.log(props.carImage);
   const [showResponseModal, setShowResponseModal] = useState(false);
   const [responseHeader, setResponseHeader] = useState();
   const [response, setResponse] = useState();

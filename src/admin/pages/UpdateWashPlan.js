@@ -49,7 +49,6 @@ const UpdateWashPlan = () => {
           undefined,
           { Authorization: `Bearer ${auth.token}` }
         );
-        console.log(responseData.washPlan);
         setLoadedWashPlan(responseData.washPlan);
         setFormData(
           {

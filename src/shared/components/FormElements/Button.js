@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import './Button.css';
 
 const Button = (props) => {
-  console.log(props.useritem);
   if (props.href) {
     return (
       <a

@@ -20,7 +20,6 @@ const Profile = () => {
         undefined,
         { Authorization: `Bearer ${auth.token}` }
       );
-      console.log(responseData);
       setProfile(responseData);
     };
     getProfile();

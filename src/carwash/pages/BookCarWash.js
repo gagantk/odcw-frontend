@@ -22,7 +22,6 @@ const BookCarWash = () => {
   useEffect(() => {
     const washPlansHandler = async () => {
       try {
-        console.log('Hi');
         const washPlansData = await sendRequest(
           process.env.REACT_APP_WASHPLAN_SERVICE,
           undefined,
@@ -32,10 +31,6 @@ const BookCarWash = () => {
         washPlans = washPlansData.washPlans;
         setWashPlan(washPlansData.washPlans[0].id);
         setPrice(washPlansData.washPlans[0].price);
-        console.log(price);
-        console.log(washPlansData);
-        console.log(washPlans);
-        console.log(washPlan);
       } catch (err) {
         console.log(err);
       }
@@ -47,7 +42,6 @@ const BookCarWash = () => {
           undefined,
           { Authorization: 'Bearer ' + auth.token }
         );
-        console.log(responseData);
         setLoadedCars({
           cars: responseData.cars,
           washPlans: washPlans,

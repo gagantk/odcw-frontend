@@ -9,21 +9,16 @@ import { AuthContext } from '../../shared/context/auth-context';
 import './CarItem.css';
 
 const CarItem = (props) => {
-  console.log(props.image);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [
     showWashRequestSuccessModal,
     setShowWashRequestSuccessModal,
   ] = useState(false);
-  console.log('Here2');
-  console.log(props.washPlans);
 
   const auth = useContext(AuthContext);
 
   const showConfirmHandler = async () => {
-    console.log('Here');
-    console.log(props.washPlans);
     setShowConfirmModal(true);
   };
 
@@ -37,13 +32,6 @@ const CarItem = (props) => {
 
   const proceedConfirmHandler = async () => {
     setShowConfirmModal(false);
-    console.log(
-      JSON.stringify({
-        washPlan: props.washPlans.filter(
-          (plan) => plan.price === props.price
-        )[0].id,
-      })
-    );
     try {
       const resp = await sendRequest(
         `${process.env.REACT_APP_WASHNOW_SERVICE}/sendWashRequest/${
@@ -57,7 +45,6 @@ const CarItem = (props) => {
           Authorization: 'Bearer ' + auth.token,
         }
       );
-      console.log(resp);
       setShowWashRequestSuccessModal(true);
     } catch (err) {
       console.log(err);

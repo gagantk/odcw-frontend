@@ -46,12 +46,10 @@ const CarDetails = () => {
     event.preventDefault();
     try {
       const formData = new FormData();
-      console.log(formState.inputs);
       formData.append('regno', formState.inputs.regno.value);
       formData.append('model', formState.inputs.model.value);
       formData.append('image', formState.inputs.image.value);
       formData.append('address', formState.inputs.address.value);
-      console.log(formData);
       await sendRequest(
         `${process.env.REACT_APP_CAR_DETAILS_SERVICE}/new`,
         'POST',

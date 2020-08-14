@@ -21,7 +21,6 @@ const Users = () => {
           undefined,
           { Authorization: `Bearer ${auth.token}` }
         );
-        console.log(responseData.users);
         setLoadedUsers(responseData.users);
       } catch (err) {
         console.log(err);

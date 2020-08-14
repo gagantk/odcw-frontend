@@ -25,7 +25,6 @@ const MyOrders = () => {
           undefined,
           { Authorization: `Bearer ${auth.token}` }
         );
-        console.log(responseData.orders);
         setOrders(responseData.orders);
         setLoadedOrders(filterCurrentOrders(responseData.orders));
       } catch (err) {
@@ -47,7 +46,6 @@ const MyOrders = () => {
   };
 
   const currentOrdersHandler = () => {
-    console.log(orders);
     const currentOrders = filterCurrentOrders(orders);
     setLoadedOrders(currentOrders);
   };

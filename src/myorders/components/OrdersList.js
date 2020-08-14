@@ -5,7 +5,6 @@ import OrdersItem from './OrdersItem';
 import './OrdersList.css';
 
 const OrdersList = (props) => {
-  console.log(props.items);
   if (props.items.orders.length === 0) {
     return (
       <div className='orders-list center'>

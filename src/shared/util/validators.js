@@ -32,7 +32,6 @@ export const VALIDATOR_PAYMENTMODE = () => ({
 
 export const validate = (value, validators) => {
   let isValid = true;
-  console.log(validators);
   for (const validator of validators) {
     if (validator.type === VALIDATOR_TYPE_REQUIRE) {
       isValid = isValid && value.trim().length > 0;

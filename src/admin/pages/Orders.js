@@ -23,7 +23,6 @@ const Orders = () => {
           { Authorization: `Bearer ${auth.token}` }
         );
         setLoadedOrders(responseData.orders);
-        console.log(responseData.orders);
       } catch (err) {
         console.log(err);
       }
@@ -51,7 +50,7 @@ const Orders = () => {
           <LoadingSpinner asOverlay />
         </div>
       )}
-      {!isLoading && loadedOrders && (
+      {!isLoading && loadedOrders && loadedWashers && (
         <OrdersList items={loadedOrders} washers={loadedWashers} />
       )}
     </React.Fragment>

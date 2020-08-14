@@ -22,7 +22,6 @@ const OrdersItem = (props) => {
         undefined,
         { Authorization: `Bearer ${auth.token}` }
       );
-      console.log(responseData);
       setShowCarWashStartedModal(true);
     } catch (err) {
       console.log(err);
@@ -37,7 +36,6 @@ const OrdersItem = (props) => {
         undefined,
         { Authorization: `Bearer ${auth.token}` }
       );
-      console.log(responseData);
       setShowCarWashEndedModal(true);
     } catch (err) {
       console.log(err);

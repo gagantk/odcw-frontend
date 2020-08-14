@@ -9,7 +9,6 @@ import './CarList.css';
 
 const CarList = (props) => {
   const [price, setPrice] = useState(props.items.washPlans[0].price);
-  console.log(props.items);
   if (props.items.cars.length === 0) {
     return (
       <div className='car-list center'>

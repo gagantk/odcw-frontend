@@ -4,6 +4,7 @@ import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import WashRequestList from '../components/WashRequestList';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 import { AuthContext } from '../../shared/context/auth-context';
+import './WashRequests.css';
 
 const WashRequests = () => {
   const [loadedRequests, setLoadedRequests] = useState();
@@ -19,9 +20,7 @@ const WashRequests = () => {
           undefined,
           { Authorization: `Bearer ${auth.token}` }
         );
-        console.log(responseData);
         setLoadedRequests(responseData);
-        console.log(responseData);
       } catch (err) {}
     };
     fetchRequests();
@@ -35,7 +34,7 @@ const WashRequests = () => {
         </div>
       )}
       {!isLoading && loadedRequests && (
-        <h2 className='center'>Wash Requests:</h2>
+        <h2 className='center washrequests-title'>Wash Requests:</h2>
       )}
       {!isLoading && loadedRequests && (
         <WashRequestList items={loadedRequests.washRequests} />

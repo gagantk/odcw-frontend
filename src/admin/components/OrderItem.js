@@ -13,12 +13,37 @@ const OrderItem = (props) => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const auth = useContext(AuthContext);
   const [showAssignWasherModal, setShowAssignWasherModal] = useState(false);
+  const [
+    showWasherAssignSuccessModal,
+    setShowWasherAssignSuccessModal,
+  ] = useState(false);
+  const [washer, setWasher] = useState(props.washers[0].id);
 
   const showAssignWasherModalHandler = () => setShowAssignWasherModal(true);
 
   const cancelAssignWasherHandler = () => setShowAssignWasherModal(false);
 
-  const confirmAssignWasherHandler = () => {};
+  const confirmAssignWasherHandler = async () => {
+    setShowAssignWasherModal(false);
+    try {
+      await sendRequest(
+        `${process.env.REACT_APP_WASHNOW_SERVICE}/assignWasher?washer=${washer}&order=${props.id}`,
+        undefined,
+        undefined,
+        { Authorization: `Bearer ${auth.token}` }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+    setShowWasherAssignSuccessModal(true);
+  };
+
+  const optionChangedHandler = (event) => {
+    setWasher(event.target.value);
+  };
+
+  const closeWasherAssignSuccessModalHandler = () =>
+    setShowWasherAssignSuccessModal(false);
 
   return (
     <React.Fragment>
@@ -39,7 +64,31 @@ const OrderItem = (props) => {
         }
       >
         <p>Choose washer to assign:</p>
-        <select name='' id=''></select>
+        <select name='washer' value={washer} onChange={optionChangedHandler}>
+          {props.washers.map((washer) => (
+            <option value={washer.id} key={washer.id}>
+              {washer.name}
+            </option>
+          ))}
+        </select>
+      </Modal>
+      <Modal
+        show={showWasherAssignSuccessModal}
+        header='Success'
+        footerClass='order-item__modal-actions'
+        footer={
+          <React.Fragment>
+            <Button
+              inverse
+              onClick={closeWasherAssignSuccessModalHandler}
+              to='/'
+            >
+              OK
+            </Button>
+          </React.Fragment>
+        }
+      >
+        <p>Washer has been assigned successfully.</p>
       </Modal>
       <li className='order-item'>
         <Card>
